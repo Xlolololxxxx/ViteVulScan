@@ -1,0 +1,65 @@
+# Default target file paths probed on a vulnerable Vite dev server.
+# One path per line. Lines starting with '#' and blank lines are ignored.
+# Paths may be project-relative (read from the Vite project root) or absolute
+# system paths reached via traversal.
+
+# --- Project / app config & secrets ---
+.env
+.env.local
+.env.development
+.env.development.local
+.env.production
+.env.production.local
+.env.test
+package.json
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+vite.config.js
+vite.config.ts
+vite.config.mjs
+tsconfig.json
+tsconfig.node.json
+.npmrc
+.yarnrc
+.yarnrc.yml
+.git/config
+.git/HEAD
+.gitignore
+docker-compose.yml
+docker-compose.yaml
+Dockerfile
+Makefile
+README.md
+src/main.js
+src/main.ts
+src/App.vue
+index.html
+
+# --- Cloud / CI credentials commonly committed by mistake ---
+.aws/credentials
+.aws/config
+.netlifyrc
+.vercel/project.json
+firebase.json
+.firebaserc
+.terraform/terraform.tfstate
+terraform.tfstate
+
+# --- Linux system files (via traversal) ---
+/etc/passwd
+/etc/hosts
+/etc/hostname
+/etc/shadow
+/etc/resolv.conf
+/etc/ssh/sshd_config
+/root/.bash_history
+/root/.ssh/id_rsa
+/root/.ssh/authorized_keys
+/proc/self/environ
+/proc/version
+
+# --- Windows system files (via traversal) ---
+/C://windows/win.ini
+/C://windows/system32/drivers/etc/hosts
+/C://boot.ini

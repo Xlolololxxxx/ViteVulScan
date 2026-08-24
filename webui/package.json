@@ -1,0 +1,23 @@
+{
+  "name": "vitevulscan-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web dashboard for auditing Vite dev-server arbitrary file-read vulnerabilities (CVE-2025-30208 / -31125 / -31486, ref. CVE-2023-30208 / CVE-2024-23331).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  },
+  "license": "MIT"
+}

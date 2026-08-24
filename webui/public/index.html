@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>ViteVulScan Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">VVS</span>
+        <div>
+          <h1>ViteVulScan</h1>
+          <p class="tagline">Vite dev-server file-read auditor</p>
+        </div>
+      </div>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle target panel" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <div class="warning-banner" role="note">
+      Authorized testing only — scan Vite servers you own or have permission to audit.
+    </div>
+
+    <main class="layout">
+      <!-- Target management panel -->
+      <aside id="panel" class="panel">
+        <section class="card">
+          <h2>Add targets</h2>
+          <form id="addForm">
+            <textarea
+              id="targetInput"
+              rows="3"
+              inputmode="url"
+              placeholder="http://localhost:5173&#10;127.0.0.1:5174"
+            ></textarea>
+            <p class="hint">One target per line (URL, host, or host:port).</p>
+            <button type="submit" class="btn primary">Add</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>Scan options</h2>
+          <label class="field">
+            <span>CVE</span>
+            <select id="cveSelect"></select>
+          </label>
+          <label class="field">
+            <span>Path list</span>
+            <select id="pathMode">
+              <option value="default">Default (curated)</option>
+              <option value="platform">Platform sensitive list</option>
+              <option value="linux">Linux sensitive list</option>
+              <option value="windows">Windows sensitive list</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Concurrency</span>
+            <input id="concurrency" type="number" min="1" max="20" value="8" inputmode="numeric" />
+          </label>
+        </section>
+
+        <section class="card">
+          <h2>Targets <span id="targetCount" class="pill">0</span></h2>
+          <ul id="targetList" class="target-list"></ul>
+        </section>
+      </aside>
+
+      <!-- Detail / results -->
+      <section class="content">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="tree" role="tab">Files</button>
+          <button class="tab" data-tab="secrets" role="tab">Secrets <span id="secretBadge" class="pill danger hidden">0</span></button>
+          <button class="tab" data-tab="viewer" role="tab">Viewer</button>
+        </div>
+
+        <div id="detailHeader" class="detail-header empty">
+          <p>Select a target and run a scan.</p>
+        </div>
+
+        <div id="tab-tree" class="tabpane active">
+          <div class="toolbar">
+            <input id="adhocPath" type="text" placeholder="Read a specific path e.g. .env" />
+            <button id="adhocRead" class="btn">Read</button>
+          </div>
+          <div id="tree" class="tree"></div>
+        </div>
+
+        <div id="tab-secrets" class="tabpane">
+          <div id="secrets" class="secrets"></div>
+        </div>
+
+        <div id="tab-viewer" class="tabpane">
+          <div class="viewer-head">
+            <span id="viewerPath" class="mono">No file selected</span>
+          </div>
+          <pre id="viewer" class="viewer"><code>Select a file from the Files tab.</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
